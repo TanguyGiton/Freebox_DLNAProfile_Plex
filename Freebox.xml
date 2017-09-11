@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Client name="Freebox">
+	<Identification>
+		<Header name="User-Agent" substring="FreeboxPlayer/6.0" />
+	</Identification>
+	<Settings>
+		<Setting name="DirectPlayStreamSelection" value="true" />
+		<Setting name="StreamUnselectedIncompatibleAudioStreams" value="true" />
+	</Settings>
+	<TranscodeTargets>
+		<VideoProfile protocol="http" container="mpegts" codec="h264" audioCodec="ac3,aac,mp3,mp2,pcm,flac" context="streaming">
+			<Setting name="VideoEncodeFlags" value="-x264opts cabac=0" />
+			<Setting name="SubtitleSize" value="100" />
+		</VideoProfile>
+		<MusicProfile container="mp3" codec="mp3" />
+		<PhotoProfile container="jpeg" />
+		<SubtitleProfile protocol="http" container="webvtt" subtitleCodec="webvtt"/>
+	</TranscodeTargets>
+	<DirectPlayProfiles>
+		<VideoProfile container="mp4,mov,mpegts,mkv" codec="h264,mpeg4,vc1" audioCodec="ac3,aac,mp3,mp2,pcm,flac" subtitleCodec="srt,mov_text,tx3g,ttxt,text" />
+		<MusicProfile container="mp3" codec="mp2,mp3" />
+		<MusicProfile container="mp4" codec="aac" />
+		<MusicProfile container="flac" codec="flac" />
+		<MusicProfile container="asf" codec="wmav2,wmapro" />
+		<MusicProfile container="wav" codec="pcm" />
+		<PhotoProfile container="jpeg,png,gif" />
+	</DirectPlayProfiles>
+	<CodecProfiles>
+		<VideoCodec name="*">
+			<Limitations>
+				<UpperBound name="video.width" value="1920" />
+				<UpperBound name="video.height" value="1080" />
+				<UpperBound name="video.bitrate" value="12000" />
+				<UpperBound name="video.refFrames" value="8" isRequired="false" />
+				<UpperBound name="video.bitDepth" value="8" isRequired="false" />
+			</Limitations>
+		</VideoCodec>
+		<VideoAudioCodec name="*">
+			<Limitations>
+				<UpperBound name="audio.channels" value="6" />
+			</Limitations>
+		</VideoAudioCodec>
+	</CodecProfiles>
+	<ContainerProfiles>
+		<PhotoContainer name="*">
+			<Limitations>
+				<UpperBound name="media.width" value="1920" />
+				<UpperBound name="media.height" value="1080" />
+			</Limitations>
+		</PhotoContainer>
+	</ContainerProfiles>
+	<DlnaMediaProfiles>
+		<DlnaMusicProfile container="wav" mimeType="audio/wav" />
+	</DlnaMediaProfiles>
+</Client>
